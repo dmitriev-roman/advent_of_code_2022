@@ -10,13 +10,15 @@ fn main() -> anyhow::Result<()> {
     let mut current_sum = 0;
 
     for line in reader.lines() {
-        let line = line?;
-        if line == "" {
-            sums.push(current_sum);
-            current_sum = 0;
-        } else {
-            let value = line.parse::<u64>()?;
-            current_sum += value;
+        match (line?).as_str() {
+            "" => {
+                sums.push(current_sum);
+                current_sum = 0;    
+            }
+            line => {
+                let value = line.parse::<u64>()?;
+                current_sum += value;
+            }
         }
     }
     sums.push(current_sum);

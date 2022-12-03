@@ -8,8 +8,7 @@ fn main() {
         .map(|(idx, c)| (c, idx + 1))
         .collect::<HashMap<char, usize>>();        
     let reader = BufReader::new(OpenOptions::new().read(true).open("task_data/3.txt").unwrap());
-    let lines = reader
-        .lines()
+    let lines = reader.lines()
         .map(|result| result.unwrap())
         .collect::<Vec<String>>();
 
@@ -25,8 +24,7 @@ fn main() {
     let group_score_sum = lines.chunks(3)
         .map(|chunk| chunk.iter()
             .map(|s| s.chars().collect::<HashSet<char>>())
-            .reduce(|left, right| left.intersection(&right).cloned().collect()).unwrap()
-        )
+            .reduce(|left, right| left.intersection(&right).cloned().collect()).unwrap())
         .flatten()
         .map(|c| score_table[&c])
         .sum::<usize>();

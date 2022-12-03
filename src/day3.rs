@@ -24,8 +24,8 @@ fn main() {
     let group_score_sum = lines.chunks(3)
         .map(|chunk| chunk.iter()
             .map(|s| s.chars().collect::<HashSet<char>>())
-            .reduce(|left, right| left.intersection(&right).cloned().collect()).unwrap())
-        .flatten()
+            .reduce(|left, right| left.intersection(&right).cloned().collect()))
+        .flatten().flatten()
         .map(|c| score_table[&c])
         .sum::<usize>();
     
